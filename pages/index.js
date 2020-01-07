@@ -10,9 +10,9 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
 import theme from '../src/theme';
 
-import HTMLTextbox from '../src/components/HTMLTextbox';
 
 import {Editor, EditorState} from 'draft-js';
 import 'draft-js/dist/Draft.css';
@@ -62,45 +62,60 @@ export default function Index() {
   ]);
 
   return (
-    <Container maxWidth="sm">
-      <Box my={4}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Next.js example
+    <Grid container>
+      <Grid item xs={3} style={{paddingLeft: '1em'}}>
+        <Typography gutterBottom>
+          <h2>Instructions:</h2>
+          <ol>
+            <li>Select a textbox.</li>
+            <li>Click on textbox.</li>
+            <li>Write text.</li>
+          </ol>
         </Typography>
-        <Paper>
-          <Tabs
-            value={currentTab}
-            onChange={handleChange}
-            indicatorColor="primary"
-            textColor="primary"
-            variant="fullWidth"
-            aria-label="full width tabs example"
-          >
-            <Tab label="HTML" />
-            <Tab label="Draft" />
-            <Tab label="Slate" />
-          </Tabs>
-        </Paper>
-        <SwipeableViews
-          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-          index={currentTab}
-          onChangeIndex={handleChangeIndex}
-          className="tab-content"
-        >
+      </Grid>
+      <Grid item xs={6}>
+        <Container maxWidth="sm">
+          <Box my={4}>
+            <Typography variant="h4" component="h1" gutterBottom>
+              Textbox Comparison
+            </Typography>
+            <Paper>
+              <Tabs
+                value={currentTab}
+                onChange={handleChange}
+                indicatorColor="primary"
+                textColor="primary"
+                variant="fullWidth"
+                aria-label="full width tabs example"
+              >
+                <Tab label="HTML" />
+                <Tab label="Draft" />
+                <Tab label="Slate" />
+              </Tabs>
+            </Paper>
+            <SwipeableViews
+              axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+              index={currentTab}
+              onChangeIndex={handleChangeIndex}
+              className="tab-content"
+            >
 
-          <TextField id="standard-basic" multiline rows="3" fullWidth/>
-          <Editor editorState={editorState} onChange={setEditorState} />
+              <TextField id="standard-basic" multiline rows="3" fullWidth/>
+              <Editor editorState={editorState} onChange={setEditorState} />
 
-          <Slate editor={editor} value={value} onChange={newValue => setValue(newValue)}>
-            <Editable />
-          </Slate>
-          {/* <div>
-            Item Three
-          </div> */}
-        </SwipeableViews>
-        <ProTip />
-        <Copyright />
-      </Box>
-    </Container>
+              <Slate editor={editor} value={value} onChange={newValue => setValue(newValue)}>
+                <Editable />
+              </Slate>
+              {/* <div>
+                Item Three
+              </div> */}
+            </SwipeableViews>
+            <ProTip />
+            <Copyright />
+          </Box>
+        </Container>
+      </Grid>
+      <Grid item xs={3}></Grid>
+    </Grid>
   );
 }
