@@ -13,6 +13,14 @@ import theme from '../src/theme';
 
 import HTMLTextbox from '../src/components/HTMLTextbox';
 
+import {Editor, EditorState} from 'draft-js';
+import 'draft-js/dist/Draft.css';
+
+import { createEditor } from 'slate';
+import { Slate, Editable, withReact } from 'slate-react';
+
+import './index.css';
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -37,6 +45,20 @@ export default function Index() {
   const handleChangeIndex = (index) => {
     setCurrentTab(index);
   };
+
+  // draft
+  const [editorState, setEditorState] = useState(
+    EditorState.createEmpty(),
+  );
+
+  // slate
+  const editor = useMemo(() => withReact(createEditor()), []);
+  const [value, setValue] = useState([
+    {
+      type: 'paragraph',
+      children: [{ text: 'A line of text in a paragraph.' }],
+    },
+  ]);
 
   return (
     <Container maxWidth="sm">
@@ -65,20 +87,14 @@ export default function Index() {
         >
 
           <HTMLTextbox text={textData} />
-          {/* <Editor editorState={editorState} onChange={setEditorState} /> */}
+          <Editor editorState={editorState} onChange={setEditorState} />
 
-          {/* <Slate editor={editor} value={value} onChange={newValue => setValue(newValue)}>
+          <Slate editor={editor} value={value} onChange={newValue => setValue(newValue)}>
             <Editable />
-          </Slate> */}
+          </Slate>
           {/* <div>
             Item Three
           </div> */}
-          <div>
-            Item Three
-          </div>
-          <div>
-            Item Three
-          </div>
         </SwipeableViews>
         <ProTip />
         <Copyright />
