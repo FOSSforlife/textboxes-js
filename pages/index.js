@@ -9,6 +9,7 @@ import Link from '../src/Link';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Paper from '@material-ui/core/Paper';
+import TextField from '@material-ui/core/TextField';
 import theme from '../src/theme';
 
 import HTMLTextbox from '../src/components/HTMLTextbox';
@@ -84,9 +85,10 @@ export default function Index() {
           axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
           index={currentTab}
           onChangeIndex={handleChangeIndex}
+          className="tab-content"
         >
 
-          <HTMLTextbox text={textData} />
+          <TextField id="standard-basic" multiline rows="3" fullWidth/>
           <Editor editorState={editorState} onChange={setEditorState} />
 
           <Slate editor={editor} value={value} onChange={newValue => setValue(newValue)}>

@@ -1,3 +1,18 @@
 .DraftEditor-root {
   min-height:50px;
 }
+
+.tab-content {
+  border: 1px solid black;
+}
+
+textarea {
+  height:100%;
+  width:100%;
+  resize:none;
+}
+
+#standard-basic {
+  height:100%;
+  width:100%;
+}
