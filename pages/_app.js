@@ -4,8 +4,9 @@ import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../src/theme';
+import { appWithTranslation } from '../i18n'
 
-export default class MyApp extends App {
+class MyApp extends App {
   componentDidMount() {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
@@ -36,3 +37,5 @@ export default class MyApp extends App {
     );
   }
 }
+
+export default appWithTranslation(MyApp);
